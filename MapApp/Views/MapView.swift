@@ -9,12 +9,12 @@ import MapKit
 import SwiftUI
 
 struct MapView: View {
-    @State var dropdownActive = false
+ 
  
     var coordinate: MKCoordinateRegion
     var locationName: String
     var body: some View {
-        ZStack(alignment: .top) {
+        
             Map(
                 bounds: MapCameraBounds(
                     centerCoordinateBounds: coordinate ,
@@ -25,15 +25,9 @@ struct MapView: View {
                 Marker(locationName, systemImage: "target" , coordinate: coordinate.center)
                 
             }
-            DropdownMenuView(dropdownActive: $dropdownActive)
-                .onTapGesture {
-                    withAnimation(.linear(duration: 0.6)) {
-                        dropdownActive.toggle()
-                    }
-                    
-                }
+         
                 
-        }
+        
         
         }
             
@@ -41,7 +35,7 @@ struct MapView: View {
     
     struct Constants{
         struct MapViewConstants{
-            static let minimumDistance =  700.0
+            static let minimumDistance =  800.0
             static let maximumDistance = 8999.0
         }
     }
