@@ -9,14 +9,22 @@ import SwiftUI
 
 struct DropdownMenuView: View {
     @Binding var dropdownActive : Bool
+    var VM : LocationsViewModel
     var body: some View {
         VStack {
             Text("MapKit App")
                 .font(.title)
                 .fontWeight(.black)
-        
-
-            
+            if dropdownActive{
+                ForEach(VM.locations){ location in
+                    
+                    Button(action:{VM.changeLocation(to: location)}){
+                        Text(location.name).fontWeight(.semibold)
+                    }
+                    .transition(AnyTransition(.scale))
+                    
+                }
+            }
             
         }.frame(maxWidth: .infinity)
             .padding()
@@ -24,18 +32,25 @@ struct DropdownMenuView: View {
             .overlay(alignment: .leading) {
                 Image(systemName: dropdownActive ? Constants.HeaderConstants.dropdownActiveImage :  Constants.HeaderConstants.dropdownImage).fontWeight(.bold).foregroundStyle(.accent).padding()
             }
-            .clipShape(RoundedRectangle(cornerRadius: Constants.HeaderConstants.cornerRadius))
-            .shadow(color: .black.opacity(Constants.HeaderConstants.opacity), radius: Constants.HeaderConstants.opacityRadius, x:Constants.HeaderConstants.shadowX, y: Constants.HeaderConstants.shadowY)
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity)
-            .padding(.top)    }
+            .dropdownShape(
+                cornerRadius: Constants.HeaderConstants.cornerRadius,
+                opacity: Constants.HeaderConstants.opacity,
+                shadowRadius:Constants.HeaderConstants.shadowRadius,
+                shadowX: Constants.HeaderConstants.shadowX,
+                shadowY: Constants.HeaderConstants.shadowY
+            )
+        
+        
+           
+        
+    }
     
     struct Constants{
      
         struct HeaderConstants {
             static let cornerRadius = 10.0
             static let opacity = 0.4
-            static let opacityRadius = 9.0
+            static let shadowRadius = 9.0
             static let shadowX = 0.0
             static let shadowY = 5.0
             static let dropdownImage = "arrow.right"
@@ -47,7 +62,7 @@ struct DropdownMenuView: View {
 #Preview {
     @Previewable @State var testing = false
     
-    DropdownMenuView(dropdownActive: $testing)
+    DropdownMenuView(dropdownActive: $testing, VM: LocationsViewModel())
         .onTapGesture {
             withAnimation(.easeOut(duration: 0.3)) {
                 testing.toggle()
