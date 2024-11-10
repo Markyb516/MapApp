@@ -9,6 +9,8 @@ import MapKit
 import SwiftUI
 
 struct MapView: View {
+    @State var dropdownActive = false
+ 
     var coordinate: MKCoordinateRegion
     var locationName: String
     var body: some View {
@@ -23,46 +25,24 @@ struct MapView: View {
                 Marker(locationName, systemImage: "target" , coordinate: coordinate.center)
                 
             }
-            Header
+            DropdownMenuView(dropdownActive: $dropdownActive)
+                .onTapGesture {
+                    withAnimation(.linear(duration: 0.6)) {
+                        dropdownActive.toggle()
+                    }
+                    
+                }
                 
         }
         
         }
             
-    var Header : some View {
-        
-        VStack {
-            Text("MapKit App")
-                .font(.title)
-                .fontWeight(.black)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(.thickMaterial)
-                .overlay(alignment: .leading) {
-                    Image(systemName: Constants.HeaderConstants.dropdownImage).fontWeight(.bold).padding()
-                }
-                .clipShape(RoundedRectangle(cornerRadius: Constants.HeaderConstants.cornerRadius))
-                .shadow(color: .black.opacity(Constants.HeaderConstants.opacity), radius: Constants.HeaderConstants.opacityRadius, x:Constants.HeaderConstants.shadowX, y: Constants.HeaderConstants.shadowY)
-                .padding(.horizontal)
-                .frame(maxWidth: .infinity)
-                .padding(.top)
-            
-            
-        }
-    }
+    
     
     struct Constants{
         struct MapViewConstants{
             static let minimumDistance =  700.0
             static let maximumDistance = 8999.0
-        }
-        struct HeaderConstants {
-            static let cornerRadius = 10.0
-            static let opacity = 0.4
-            static let opacityRadius = 9.0
-            static let shadowX = 0.0
-            static let shadowY = 5.0
-            static let dropdownImage = "arrow.down"
         }
     }
 }
