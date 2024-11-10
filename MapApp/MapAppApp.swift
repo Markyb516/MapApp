@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MapAppApp: App {
+    @State private var locationsVM = LocationsViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(locationsVM)
         }
     }
 }
