@@ -8,7 +8,11 @@
 import Foundation
 import MapKit
 
-struct Location : Identifiable {
+struct Location : Identifiable, Equatable{
+    static func == (lhs: Location, rhs: Location) -> Bool {
+        lhs.id == rhs.id
+    }
+    var active = false
     let id = UUID().uuidString
     let name: String
     let cityName: String

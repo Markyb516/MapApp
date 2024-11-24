@@ -8,46 +8,63 @@
 import SwiftUI
 
 struct DropdownMenuView: View {
-    @Binding var dropdownActive : Bool
+    @State var dropdownActive = false
+    var header : String
     var VM : LocationsViewModel
     var body: some View {
         VStack {
-            Text("MapKit App")
-                .font(.title)
-                .fontWeight(.black)
+            Heading
             if dropdownActive{
-                ForEach(VM.locations){ location in
-                    
-                    Button(action:{VM.changeLocation(to: location)}){
-                        Text(location.name).fontWeight(.semibold)
-                    }
-                    .transition(AnyTransition(.scale))
-                    
-                }
+                LocationsDropdownList
             }
-            
         }.frame(maxWidth: .infinity)
             .padding()
             .background(.thickMaterial)
-            .overlay(alignment: .leading) {
-                Image(systemName: dropdownActive ? Constants.HeaderConstants.dropdownActiveImage :  Constants.HeaderConstants.dropdownImage).fontWeight(.bold).foregroundStyle(.accent).padding()
-            }
+            .overlay(alignment: .leading){DropdownIndicatorArrow}
             .dropdownShape(
-                cornerRadius: Constants.HeaderConstants.cornerRadius,
-                opacity: Constants.HeaderConstants.opacity,
-                shadowRadius:Constants.HeaderConstants.shadowRadius,
-                shadowX: Constants.HeaderConstants.shadowX,
-                shadowY: Constants.HeaderConstants.shadowY
+                cornerRadius: Constants.cornerRadius,
+                opacity: Constants.opacity,
+                shadowRadius:Constants.shadowRadius,
+                shadowX: Constants.shadowX,
+                shadowY: Constants.shadowY
             )
-        
-        
-           
-        
+            .onTapGesture {
+                    dropdownActive.toggle()
+            }
+            .animation(.easeOut(duration: Constants.animationDuration), value: dropdownActive)
+    }
+    
+    
+    var Heading : some View {
+        Text(header)
+            .font(.largeTitle)
+            .fontWeight(.black)
+    }
+    
+    var LocationsDropdownList : some View {
+        ScrollView{
+        ForEach(VM.locations){ location in
+            Button(action:{
+                VM.changeLocation(to: location)
+                dropdownActive.toggle()}){
+                    Text(location.name)
+                        .font(.title2)
+                        .fontWeight(.semibold).minimumScaleFactor(0.5)
+                }
+                .transition(AnyTransition(.scale))
+            
+            }
+        }.frame(maxWidth: .infinity, maxHeight: 200)
+         .transition(AnyTransition(.scale))
+    }
+    
+    var DropdownIndicatorArrow : some View {
+        Image(systemName: dropdownActive ? Constants.dropdownActiveImage :  Constants.dropdownImage).fontWeight(.bold).foregroundStyle(.accent).padding()
     }
     
     struct Constants{
      
-        struct HeaderConstants {
+      
             static let cornerRadius = 10.0
             static let opacity = 0.4
             static let shadowRadius = 9.0
@@ -55,18 +72,12 @@ struct DropdownMenuView: View {
             static let shadowY = 5.0
             static let dropdownImage = "arrow.right"
             static let dropdownActiveImage = "arrow.down"
-        }
+            static let animationDuration = 0.4
+        
     }
 }
 
 #Preview {
-    @Previewable @State var testing = false
+    DropdownMenuView(header: "map kit", VM: LocationsViewModel())
     
-    DropdownMenuView(dropdownActive: $testing, VM: LocationsViewModel())
-        .onTapGesture {
-            withAnimation(.easeOut(duration: 0.3)) {
-                testing.toggle()
-            }
-            
-        }
 }
