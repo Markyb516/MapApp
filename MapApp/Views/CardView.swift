@@ -14,6 +14,7 @@ import MapKit
         @Environment(LocationsViewModel.self) private var LocationsVM
         var location : Location
         
+        
         var body: some View {
             ZStack {
                 CardBackground

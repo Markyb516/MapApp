@@ -17,7 +17,8 @@ struct TestingView: View {
                 .frame(width: 200,height: 200)
                 .padding(5)
                 .foregroundStyle(.white)
-                .background(Circle().foregroundStyle(.red))
+                .background(Circle().fill(Color(#colorLiteral(red: 1, green: 0.2527923882, blue: 1, alpha: 1))))
+            
                 
             Image(systemName: "arrowtriangle.down.fill")
                 .resizable()
