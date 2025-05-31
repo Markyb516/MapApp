@@ -15,8 +15,6 @@
 - 📍 Predefined pins for famous European landmarks
 - 💡 Built with SwiftUI’s reactive design patterns
 
-## 📲 Installation
-
 ## 📱 Requirements
 
 - iOS 17.0 or later <br>
