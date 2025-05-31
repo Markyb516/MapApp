@@ -8,7 +8,7 @@
 import MapKit
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     
     @Environment(LocationsViewModel.self) private var locationsVM
    
@@ -66,6 +66,6 @@ struct ContentView: View {
 
 #Preview {
     let test = LocationsViewModel()
-    ContentView()
+    HomeView()
         .environment(test)
 }
