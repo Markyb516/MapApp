@@ -9,7 +9,7 @@ import MapKit
 import SwiftUI
 
 struct MapView: View {
-    @State var activeLocation : Location? = nil
+    @State private var activeLocation : Location? = nil
     var locationsVM : LocationsViewModel
     var currentLocationCoordinate : MKCoordinateRegion{
         if let selectedLocation = locationsVM.selectedLocation {

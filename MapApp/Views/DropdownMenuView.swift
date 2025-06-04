@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DropdownMenuView: View {
-    @State var dropdownActive = false
+    @State private var dropdownActive = false
     var header : String
     var VM : LocationsViewModel
     var body: some View {

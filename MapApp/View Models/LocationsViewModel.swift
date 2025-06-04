@@ -17,9 +17,7 @@ import SwiftUI
         if let newLocation = locations.firstIndex(where: { $0 == location }){
             locations[newLocation].active = true
             selectedLocation = locations[newLocation]
-            
         }
-        
     }
     
 

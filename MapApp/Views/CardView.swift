@@ -9,8 +9,7 @@ import SwiftUI
 import MapKit
 
     struct CardView: View {
-        @State var light = false
-        @State var detailedView = false
+        @State private var showDetailedView = false
         @Environment(LocationsViewModel.self) private var LocationsVM
         var location : Location
         
@@ -28,7 +27,7 @@ import MapKit
                         
                     VStack{
                         LearnMoreButton
-                            .sheet(isPresented: $detailedView) {
+                            .sheet(isPresented: $showDetailedView) {
                                 DetailedView(location: location)
                             }
                         
@@ -86,7 +85,7 @@ import MapKit
         
         var LearnMoreButton : some View{
             Button {
-                detailedView.toggle()
+                showDetailedView.toggle()
             } label:{
                 Text(Constants.LearnMoreButtonConstants.buttonText)
                     .foregroundStyle(.white).fontWeight(.semibold)

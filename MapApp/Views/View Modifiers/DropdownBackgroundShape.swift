@@ -15,7 +15,6 @@ struct DropdownBackgroundShape: ViewModifier {
     let shadowY : Double
     
     func body(content: Content) -> some View {
-        
         content
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
             .shadow(color: .black.opacity(opacity), radius: shadowRadius, x:shadowX, y: shadowY)

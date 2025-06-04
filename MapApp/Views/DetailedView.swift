@@ -10,7 +10,6 @@ import MapKit
 
 struct DetailedView: View {
     var  location : Location
-    
     var body: some View {
         ImageCarrosel
         LocationDetails
