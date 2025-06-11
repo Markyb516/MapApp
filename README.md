@@ -23,6 +23,7 @@
 
 ## Screenshots
 <img width="216" alt="Image" src="https://github.com/user-attachments/assets/d44a6bf3-f1a5-4504-892b-f59403e70bca" />
+<img width="220" alt="Image" src="https://github.com/user-attachments/assets/e956ae67-ee22-4bdd-b278-0c620af690db" />
 
 ## 🧭 Purpose
 
