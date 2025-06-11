@@ -22,8 +22,7 @@
 - SwiftUI & MapKit frameworks
 
 ## Screenshots
-<img width="217" alt="Image" src="https://github.com/user-attachments/assets/12583352-d740-4260-ac09-b545d00f8610"/>
-<img width="216" alt="Image" src="https://github.com/user-attachments/assets/731aecee-f8cf-4e65-8e27-d86afdfc25c7" />
+<img width="216" alt="Image" src="https://github.com/user-attachments/assets/d44a6bf3-f1a5-4504-892b-f59403e70bca" />
 
 ## 🧭 Purpose
 
